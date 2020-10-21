@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+      <div id="containerNumber">
+          <h1>Generate random number for match with list numbers</h1>
+    <h4>list of numbers</h4>
+    <p id="1" class="number" >48</p>
+    <p id="2" class="number">5</p>
+    <p id="3" class="number">16</p>
+    <p id="4" class="number">18</p>
+    <p id="5" class="number">29</p>
+    <p id="6" class="number">87</p>
+    <p id="7" class="number">2</p>
+    <p id="8" class="number">97</p>
+    <button id="btn">generate</button>
+    </div>
+
+    <script>
+
+        // récupération du bouton du dom et application d'un onclick
+
+        const btn = document.getElementById('btn')
+        btn.onclick= generateNumber
+
+        // générer un nombre aléatoire et executer la fonction de comparaison
+
+
+        const getRandomInt = (max) => {
+            const randomNumber = Math.floor(Math.random() * Math.floor(max));
+            compareNumber(randomNumber)
+            return randomNumber
+        }
+
+        // créer le texte pour afficher dans le dom le nombre généré
+
+        const generateNumber = () => {
+            const tag = document.createElement("p");
+            const text = document.createTextNode(`number generate ${getRandomInt(6)} `);
+            tag.appendChild(text);
+            const element = document.getElementById("containerNumber");
+            element.appendChild(tag);
+        }
+
+        // récupérer les nombres du html et les comparer au nombre généré
+
+        const compareNumber = (randmonNumber) => {
+        const listNumbers = document.getElementsByClassName('number')
+            for(i = 0; i < listNumbers.length; i++){
+                    console.log(listNumbers[i].outerText, randmonNumber)
+                if(parseInt(listNumbers[i].outerText) === randmonNumber){
+                    goodNumber()
+                }
+            }
+        }
+
+        // Si le nombre généré est égale à un  des nombres du html, créer un texte succés
+
+        const goodNumber = () => {
+            const tag = document.createElement("h1");
+            const text = document.createTextNode(`Success the random number match !`);
+            tag.appendChild(text);
+            const element = document.getElementById("containerNumber");
+            element.appendChild(tag);
+        }
+
+
+        /*
+        step 1 : récupérer élément bouton et lui appliquer un onclick
+        step 2 : créer une fonction pour générer un nombre random
+        step 3 : créer une fonction pour créer un <p> avec le nombre générer
+        step 4 : créer une fonction pour récupérer les nombre du html et les comparer avec le nombre généré
+        step 5 : créer fonction pour créer un <p> affichant succés si le nombre généré correspond avec un des nombre du html */
+    </script>
+  </body>
+</html>
